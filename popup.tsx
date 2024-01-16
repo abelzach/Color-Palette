@@ -2,23 +2,33 @@ import { useState } from "react"
 
 function IndexPopup() {
   const [data, setData] = useState("")
-
+  const colors = ["#FF5733", "#33FF57", "#5733FF", "#FFFF33", "#33FFFF"];
   return (
+    <div>
+      <h2>
+        Color Palette
+      </h2>
     <div
       style={{
-        padding: 16
+        paddingBottom: 4
       }}>
-      <h2>
-        Welcome to your{" "}
-        <a href="https://www.plasmo.com" target="_blank">
-          Plasmo
-        </a>{" "}
-        Extension!
-      </h2>
-      <input onChange={(e) => setData(e.target.value)} value={data} />
-      <a href="https://docs.plasmo.com" target="_blank">
-        View Docs
-      </a>
+      
+      {colors.map((color, index) => (
+        <div
+          key={index}
+          style={{
+            backgroundColor: color,
+            padding: 10,
+            marginBottom: 10,
+            color: "#000000",
+            width: "180px",
+            textAlign: "center"
+          }}
+        >
+          {color}
+        </div>
+      ))}
+    </div>
     </div>
   )
 }
