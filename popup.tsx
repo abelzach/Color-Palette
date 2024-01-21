@@ -1,19 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function IndexPopup() {
-  const [colors, setColors] = useState([]);
+  const colorsData = require("./colors.json"); 
+  const allColors = colorsData.allColors;
 
-  useEffect(() => {
-    import("./colors.json")
-      .then((module) => {
-        const allColors = module.allColors;
-        const initialColors = getRandomColors(allColors);
-        setColors(initialColors);
-      })
-      .catch((error) => {
-        console.error("Error loading colors:", error);
-      });
-  }, []);
+  const [colors, setColors] = useState(getRandomColors(allColors));
 
   function getRandomColors(allColors) {
     const numberOfColorsToShow = 5;
@@ -22,7 +13,7 @@ function IndexPopup() {
   }
 
   const handleRefresh = () => {
-    const newColors = getRandomColors(colors);
+    const newColors = getRandomColors(allColors);
     setColors(newColors);
   };
 
